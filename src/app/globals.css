@@ -187,3 +187,82 @@
   .panel { padding: 36px 20px; }
   .table td { font-size: 15px; } .table td.big { font-size: 19px; }
 }
+
+/* ───────── Motion layer (see components/Motion.tsx) ───────── */
+#progress { position: fixed; inset: 0 0 auto 0; height: 2px; background: var(--color-orange); transform: scaleX(0); transform-origin: 0 50%; z-index: 50; pointer-events: none; }
+.page-in { animation: page-in .6s var(--ease-out-strong) both; }
+@keyframes page-in { from { opacity: 0; } to { opacity: 1; } }
+
+.motion .r { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease-out-strong) var(--d, 0ms), transform .9s var(--ease-out-strong) var(--d, 0ms); }
+.motion .r.in { opacity: 1; transform: none; }
+.motion .card.r, .motion img.r { transform: none; clip-path: inset(0 0 100% 0); transition: clip-path 1.1s var(--ease-io-strong) var(--d, 0ms), opacity .4s ease var(--d, 0ms); }
+.motion .card.r.in, .motion img.r.in { clip-path: inset(0 0 0 0); }
+
+/* ───────── Micro-interactions ───────── */
+/* Underline sweeps away and back in on hover. */
+.link > span { text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; padding-bottom: 2px; transition: background-size .45s var(--ease-out-strong); }
+@media (hover: hover) and (pointer: fine) {
+  .link:hover > span { background-size: 0 1px; background-position: 100% 100%; animation: underline .5s var(--ease-out-strong) .2s forwards; }
+}
+@keyframes underline { from { background-size: 0 1px; background-position: 0 100%; } to { background-size: 100% 1px; background-position: 0 100%; } }
+
+/* Orange squares turn their arrow on hover. */
+.sq svg { transition: transform .3s var(--ease-out-strong); }
+.sq:hover svg { transform: rotate(45deg) scale(1.1); }
+
+/* Buttons: lift + arrow nudge, press scale. */
+.btn { position: relative; overflow: hidden; isolation: isolate; }
+.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(255,255,255,.14); transform: translateY(101%); transition: transform .35s var(--ease-out-strong); }
+@media (hover: hover) and (pointer: fine) { .btn:hover::before { transform: none; } }
+.btn.ghost::before { background: var(--color-ink); }
+.btn.ghost:hover { color: #fff; }
+.btn.ghost.light::before { background: #fff; }
+.btn.ghost.light:hover { color: var(--color-green); }
+
+/* Nav: arrow slides in on hover. */
+.nav a:not([aria-current]) { transition: color .2s ease, transform .3s var(--ease-out-strong); }
+@media (hover: hover) and (pointer: fine) { .nav a:not([aria-current]):hover { transform: translateX(-4px); } }
+
+/* Pillars lift. */
+.pillar { transition: transform .4s var(--ease-out-strong), box-shadow .4s var(--ease-out-strong); }
+@media (hover: hover) and (pointer: fine) { .pillar:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(17,17,17,.1); } }
+
+/* Estate cards: deeper zoom + details link slides. */
+.card .link svg { transition: transform .35s var(--ease-out-strong); }
+@media (hover: hover) and (pointer: fine) { .card:hover .link svg { transform: translate(3px, -3px); } }
+
+/* Rows: number slides, text nudges. */
+.row > span:nth-child(2) { transition: transform .35s var(--ease-out-strong); }
+@media (hover: hover) and (pointer: fine) { .row:hover > span:nth-child(2) { transform: translateX(8px); } }
+
+/* Segmented buttons and filters press. */
+.seg button, .filter { transition: background .2s ease, color .2s ease, box-shadow .2s ease, transform .16s var(--ease-out-strong); }
+.seg button:active, .filter:active { transform: scale(.96); }
+.filter svg { animation: nudge .35s var(--ease-out-strong); }
+@keyframes nudge { from { transform: translateX(-8px); opacity: 0; } }
+
+/* Calculator figures pop when they change. */
+.tick { display: inline-block; animation: tick .45s var(--ease-out-strong); }
+@keyframes tick { from { opacity: .2; transform: translateY(8px); filter: blur(2px); } }
+
+/* FAQ opens smoothly where supported. */
+.faq { interpolate-size: allow-keywords; }
+.faq details::details-content { block-size: 0; overflow: hidden; transition: block-size .4s var(--ease-out-strong), content-visibility .4s allow-discrete; }
+.faq details[open]::details-content { block-size: auto; }
+.faq summary::after { transition: transform .3s var(--ease-out-strong); }
+.faq details[open] summary::after { transform: rotate(180deg); }
+
+/* Inputs: focus line grows from the left. */
+.field { position: relative; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: transparent; background: linear-gradient(var(--color-green), var(--color-green)) 0 100% / 100% 2px no-repeat; }
+.dark .field input:focus, .dark .field select:focus, .dark .field textarea:focus { background: linear-gradient(#fff, #fff) 0 100% / 100% 2px no-repeat; }
+
+/* Footer wordmark letters rise on hover. */
+@media (hover: hover) and (pointer: fine) { footer [aria-hidden] { transition: letter-spacing .6s var(--ease-out-strong); } footer [aria-hidden]:hover { letter-spacing: -0.03em; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .motion .r { opacity: 1; transform: none; clip-path: none; transition: none; }
+  .page-in, .tick, .filter svg { animation: none; }
+  #progress { display: none; }
+  .pillar, .row > span, .nav a, .btn::before { transition: none; }
+}

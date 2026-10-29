@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter_Tight, Montserrat } from "next/font/google";
 import Footer from "@/components/Footer";
+import Motion from "@/components/Motion";
 import { site } from "@/data/site";
 import "./globals.css";
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
       <body>
+        <Motion />
         {children}
         <Footer />
       </body>

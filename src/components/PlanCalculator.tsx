@@ -79,7 +79,9 @@ function Step({ label, children }: { label: string; children: React.ReactNode })
 function Out({ value, label }: { value: string; label: string }) {
   return (
     <div className="border-t border-white/25 pt-3">
-      <b className="block text-[clamp(24px,2.6vw,34px)] font-normal tracking-[-0.03em] tabular-nums">{value}</b>
+      <b className="block text-[clamp(24px,2.6vw,34px)] font-normal tracking-[-0.03em] tabular-nums">
+        <span key={value} className="tick">{value}</span>
+      </b>
       <span className="text-[13px] text-white/70">{label}</span>
     </div>
   );

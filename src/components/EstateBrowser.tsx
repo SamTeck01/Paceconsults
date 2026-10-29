@@ -44,7 +44,7 @@ export default function EstateBrowser({ estates }: { estates: Estate[] }) {
         </div>
       </div>
       {list.length ? (
-        <div className="grid gap-x-1 gap-y-12 md:grid-cols-3">
+        <div key={city + budget} className="page-in grid gap-x-1 gap-y-12 md:grid-cols-3">
           {list.map((e) => {
             const from = fromPrice(e);
             return (

@@ -27,7 +27,7 @@ export default function FeaturedEstates({ estates }: { estates: Estate[] }) {
           ))}
         </ul>
       </div>
-      <div className={`grid gap-1 ${["", "", "md:grid-cols-2", "md:grid-cols-3"][shown.length]}`}>
+      <div key={city} className={`page-in grid gap-1 ${["", "", "md:grid-cols-2", "md:grid-cols-3"][shown.length]}`}>
         {shown.map((e) => (
           <EstateCard key={e.slug} estate={e} />
         ))}
