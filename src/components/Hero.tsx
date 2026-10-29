@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { nav } from "@/data/site";
-import { ArrowRight, PaceMark } from "./icons";
+import { ArrowRight } from "./icons";
 import { TextLink } from "./ui";
 
 type Props = {
@@ -23,12 +23,8 @@ export default function Hero({ current, image, alt, title, sub, cta, eyebrow, co
       <div className="hero-img">
         <Image src={image} alt={alt} fill priority sizes="100vw" className="object-cover" style={{ objectPosition: imagePosition }} />
       </div>
-      <Link href="/" className="absolute left-0 top-2.5 z-[2] flex items-center gap-2.5 max-md:top-1" aria-label="Pace Consults home">
-        <PaceMark size={48} />
-        <span className="flex flex-col font-brand font-extrabold leading-[.86] text-green">
-          <b className="text-[27px] tracking-[-0.01em] max-md:text-[21px]">PACE</b>
-          <small className="mt-[3px] text-[9.6px] tracking-[.2em] max-md:text-[7.6px]">CONSULTS</small>
-        </span>
+      <Link href="/" className="absolute left-0 top-2 z-[2] block max-md:top-1" aria-label="Pace Consults home">
+        <Image src="/images/logo.png" alt="Pace Consults" width={654} height={285} priority className="h-[58px] w-auto max-md:h-[46px]" />
       </Link>
       <nav aria-label="Main">
         <ul className="nav">

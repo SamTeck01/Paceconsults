@@ -6,6 +6,8 @@
 //   "Plan your plot" calculator. Leave them out if unknown.
 // • Update `pricesAsAt` whenever prices change.
 // • status: "selling" | "few-left" | "pre-launch" | "coming-soon" | "sold-out"
+//   Sold-out estates stay on the site as past projects; they leave the
+//   calculator, inspection forms and payment tables automatically.
 // ─────────────────────────────────────────────────────────────
 
 export type Status = "selling" | "few-left" | "pre-launch" | "coming-soon" | "sold-out";
@@ -82,8 +84,7 @@ export const estates: Estate[] = [
     city: "Oyo",
     area: "Oyo town, near Ajayi Crowther University",
     coord: "7°51′N 3°56′E",
-    status: "selling",
-    featured: true,
+    status: "sold-out",
     tagline: "Own. Build. Flourish.",
     summary:
       "An exclusive buy-and-build estate that blends rural calm with city access — near the new Alaafin residence, Ajayi Crowther University and the new Ogbomoso expressway.",
@@ -111,8 +112,7 @@ export const estates: Estate[] = [
     city: "Ibadan",
     area: "Ido, Ibadan",
     coord: "7°30′N 3°43′E",
-    status: "selling",
-    featured: true,
+    status: "sold-out",
     tagline: "Own. Build. Thrive.",
     summary:
       "Buy-and-build land in Ido, Ibadan: 100% dry, flat land in a peaceful, progressive area close to the Ido LGA Secretariat, Eleyele and the Ladoke Akintola train station.",
@@ -192,7 +192,7 @@ export const estates: Estate[] = [
     city: "Lagos",
     area: "Off Epe–Ijebu Ode Expressway, Lagos",
     coord: "6°35′N 3°59′E",
-    status: "pre-launch",
+    status: "selling",
     featured: true,
     tagline: "Lagos called. We answered.",
     summary:
@@ -222,7 +222,7 @@ export const estates: Estate[] = [
     city: "Oyo",
     area: "3 min off Oyo–Ogbomoso Expressway",
     coord: "7°51′N 3°56′E",
-    status: "selling",
+    status: "sold-out",
     tagline: "A blend of nature and comfort.",
     summary: "100% dry land with instant allocation and instalments from a ₦100k deposit.",
     title: "Registered survey plan",
@@ -243,7 +243,7 @@ export const estates: Estate[] = [
     city: "Oyo",
     area: "Oyo town, off the old Oyo–Ogbomoso road",
     coord: "7°51′N 3°56′E",
-    status: "few-left",
+    status: "sold-out",
     tagline: "Where Pace started.",
     summary: "Pace's flagship estate in five phases — good roads, stable power and a well-developed area. Over 400 plots allocated.",
     title: "Registered survey plan on demand",
@@ -277,21 +277,21 @@ export const estates: Estate[] = [
       },
       {
         name: "Phase II",
-        status: "selling",
+        status: "sold-out",
         lead: "Wide roads, instant allocation.",
         body: "3 minutes off the old Oyo–Ogbomoso road and 5 minutes from Atiba LG Secretariat. All documents at allocation.",
         plans: [{ size: "250 sqm", price: 300_000 }, { size: "500 sqm", price: 600_000 }, { size: "1 acre", price: 3_500_000 }],
       },
       {
         name: "Primo III",
-        status: "few-left",
+        status: "sold-out",
         lead: "70% sold within a month of launch.",
         body: "Pay 50% and your plot is allocated the same day.",
         plans: [{ size: "Standard plot" }, { size: "1 acre" }],
       },
       {
         name: "Premium",
-        status: "few-left",
+        status: "sold-out",
         lead: "Twenty plots at the centre.",
         body: "For buyers who want to build and invest at the heart of the estate.",
         plans: [{ size: "Premium plot" }],
@@ -305,7 +305,7 @@ export const estates: Estate[] = [
     city: "Oyo",
     area: "Developed area of Oyo town",
     coord: "7°51′N 3°56′E",
-    status: "selling",
+    status: "sold-out",
     tagline: "A serene environment.",
     summary: "Land in a developed, serene part of Oyo town. Inspect online or in person.",
     title: "To confirm",
@@ -318,6 +318,9 @@ export const estates: Estate[] = [
   },
 ];
 
+export const isOnSale = (e: Estate) => e.status !== "sold-out";
+export const onSale = () => estates.filter(isOnSale);
+
 export const getEstate = (slug: string) => estates.find((e) => e.slug === slug);
 
 export const fromPrice = (e: Estate) => {
@@ -325,17 +328,18 @@ export const fromPrice = (e: Estate) => {
   return prices.length ? Math.min(...prices) : undefined;
 };
 
-export type PlanOption = { estate: string; size: string; price: number; deposit: number; months: number };
+export type PlanOption = { estate: string; size: string; price: number; deposit?: number; months?: number };
 
-// Calculator options: any plan that has a price, deposit and number of months.
+// Calculator options: every priced plan on an estate that is still on sale.
+// Deposit and months are shown when set; otherwise the team confirms them.
 export const planOptions = (list: Estate[] = estates): PlanOption[] =>
-  list.flatMap((e) =>
+  list.filter(isOnSale).flatMap((e) =>
     e.plans
-      .filter((p) => p.price && p.deposit && p.months)
-      .map((p) => ({ estate: e.name, size: p.size, price: p.price!, deposit: p.deposit!, months: p.months! })),
+      .filter((p) => p.price)
+      .map((p) => ({ estate: e.name, size: p.size, price: p.price!, deposit: p.deposit, months: p.months })),
   );
 
-export const naira =(n: number) => "₦" + Math.round(n).toLocaleString("en-NG");
+export const naira = (n: number) => "₦" + Math.round(n).toLocaleString("en-NG");
 
 export const shortNaira = (n: number) =>
   n >= 1_000_000 ? `₦${+(n / 1_000_000).toFixed(1)}m` : `₦${Math.round(n / 1000)}k`;

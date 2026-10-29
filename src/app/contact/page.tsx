@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import { Label, TextLink } from "@/components/ui";
 import WhatsAppForm from "@/components/WhatsAppForm";
-import { estates } from "@/data/estates";
+import { onSale } from "@/data/estates";
 import { site, telHref, waLink } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -53,7 +53,7 @@ export default function ContactPage() {
             intro="Hello Pace, I'd like to book an inspection."
             submitLabel="Request inspection"
             fields={[
-              { name: "estate", label: "Estate", type: "select", options: [...estates.map((e) => e.name), "Not sure yet"], full: true },
+              { name: "estate", label: "Estate", type: "select", options: [...onSale().map((e) => e.name), "Not sure yet"], full: true },
               { name: "name", label: "Full name", required: true },
               { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true },
               { name: "date", label: "Preferred date", type: "date" },

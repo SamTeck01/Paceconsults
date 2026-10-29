@@ -14,6 +14,9 @@ npm run build   # production build
 
 ## Updating content (no design changes needed)
 
+**Selling vs sold out:** set an estate's `status` to `"sold-out"` and the site moves it to past projects automatically: it leaves the calculator, the inspection forms and the payment tables, and its page points visitors to the estates still on sale. Set it back to `"selling"` to relaunch it.
+
+
 | What | File |
 |---|---|
 | Estates, prices, deposits, months, status, documents, landmarks, FAQs | `src/data/estates.ts` |
@@ -34,10 +37,8 @@ There is no backend yet. Inspection, quote, Academy and careers forms open Whats
 
 ## Before launch — to confirm with Pace
 
-- Official logo vector (the mark in `src/components/icons.tsx` is redrawn from the Instagram avatar).
 - High-res drone and site photos. Several land photos are stand-ins (`hero-road`, `land-*`). Team and Academy photos are low-res crops from social media.
-- Primo III, Primo Premium and Esolad Gardens prices; deposits and months for Orange County and Primo.
-- Ilé Ìrè title: the product paper says both "Survey Plan" (FAQ) and "C of O in view" (documents page).
+- Deposit and instalment terms for Orange County Oyo and Epe (add `deposit` and `months` to show monthly figures in the calculator).
 - Directors' photos and the founding story.
 - The final domain (`site.url` in `src/data/site.ts`).
 

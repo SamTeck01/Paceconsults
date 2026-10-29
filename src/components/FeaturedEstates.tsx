@@ -10,12 +10,12 @@ const cities: ("All" | City)[] = ["All", "Oyo", "Ibadan", "Lagos"];
 
 export default function FeaturedEstates({ estates }: { estates: Estate[] }) {
   const [city, setCity] = useState<"All" | City>("All");
-  const shown = (city === "All" ? estates.filter((e) => e.featured) : estates.filter((e) => e.city === city)).slice(0, 3);
+  const shown = (city === "All" ? estates.filter((e) => e.featured) : estates.filter((e) => e.city === city).sort((a, b) => Number(a.status === "sold-out") - Number(b.status === "sold-out"))).slice(0, 3);
 
   return (
     <>
       <div className="mb-7 grid gap-8 md:grid-cols-[1fr_auto]">
-        <h2 id="featured" className="h-sec max-w-[24ch]">Dry, documented land in Oyo, Ibadan and Lagos, ready for inspection.</h2>
+        <h2 id="featured" className="h-sec max-w-[24ch]">Two estates selling now, surveyed and ready for inspection.</h2>
         <ul className="flex flex-col items-end gap-1" aria-label="Filter estates by city">
           {cities.map((c) => (
             <li key={c}>
@@ -27,7 +27,7 @@ export default function FeaturedEstates({ estates }: { estates: Estate[] }) {
           ))}
         </ul>
       </div>
-      <div className={`grid gap-1 ${shown.length === 1 ? "" : "md:grid-cols-3"}`}>
+      <div className={`grid gap-1 ${["", "", "md:grid-cols-2", "md:grid-cols-3"][shown.length]}`}>
         {shown.map((e) => (
           <EstateCard key={e.slug} estate={e} />
         ))}

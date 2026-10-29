@@ -4,14 +4,17 @@ import Hero from "@/components/Hero";
 import { ArrowUpRight } from "@/components/icons";
 import PlanCalculator from "@/components/PlanCalculator";
 import { Collage, Label, Rows, TextLink } from "@/components/ui";
-import { estates, planOptions } from "@/data/estates";
+import { estates, fromPrice, isOnSale, onSale, planOptions, shortNaira } from "@/data/estates";
 import { services } from "@/data/services";
 import { site, telHref } from "@/data/site";
+
+const cheapest = Math.min(...onSale().map((e) => fromPrice(e) ?? Infinity));
+const soldOut = estates.filter((e) => !isOnSale(e)).length;
 
 const pillars = [
   { href: "/services/land-surveying", title: "Surveyed before it's sold", body: "Our own surveyors map every plot. You get a survey plan in your name." },
   { href: "/buy-land", title: "Documents at allocation", body: "Pay your deposit and receive your receipt and allocation letter." },
-  { href: "#plan", title: "Plans from ₦100k deposit", body: "Half plot, full plot or an acre. Spread the balance over months." },
+  { href: "#plan", title: `Plots from ${shortNaira(cheapest)}`, body: "300, 450 and 600 sqm at Orange County, with flexible payment." },
 ];
 
 export default function Home() {
@@ -22,7 +25,7 @@ export default function Home() {
         image="/images/hero-road.jpg"
         alt="A car driving down a dusty laterite road towards open land at sunset"
         title={site.tagline}
-        sub="Surveyed, documented and allocated. Estates in Oyo, Ibadan and Lagos."
+        sub="Surveyed, documented and allocated. Now selling Orange County in Oyo and Epe, Lagos."
         cta={{ href: "/contact", label: "Book an Inspection" }}
         coord="7°51′N 3°56′E · Oyo town"
       />
@@ -48,7 +51,7 @@ export default function Home() {
       </section>
 
       <section className="sec" aria-labelledby="featured">
-        <Label>Featured Estates</Label>
+        <Label>Now Selling</Label>
         <FeaturedEstates estates={estates} />
       </section>
 
@@ -57,8 +60,8 @@ export default function Home() {
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           <div className="num"><b>400+</b><span>Plots allocated at Primo Phase I</span></div>
           <div className="num"><b>70%</b><span>Of Primo III sold in its first month</span></div>
-          <div className="num"><b>{estates.length}</b><span>Estates across Oyo, Ibadan and Lagos</span></div>
-          <div className="num"><b>₦100k</b><span>Lowest entry deposit, at Ìdèra</span></div>
+          <div className="num"><b>{soldOut}</b><span>Estates sold out across Oyo and Ibadan</span></div>
+          <div className="num"><b>{shortNaira(cheapest)}</b><span>Entry price at Orange County Oyo today</span></div>
         </div>
       </section>
 
@@ -92,11 +95,11 @@ export default function Home() {
       <section id="plan" className="sec panel grid gap-14 md:grid-cols-[5fr_7fr]" aria-labelledby="plan-h">
         <div>
           <p className="label !text-white/70">[Plan Your Plot]</p>
-          <h2 id="plan-h" className="text-[clamp(28px,3vw,36px)] leading-[1.12]">See your deposit and monthly payment before you visit.</h2>
+          <h2 id="plan-h" className="text-[clamp(28px,3vw,36px)] leading-[1.12]">Plan your plot before you visit.</h2>
           <p className="mt-4.5 max-w-[40ch] text-white/80">
-            Choose an estate, a size and how long you need. When it looks right, send the plan to our team on WhatsApp and we'll book your inspection.
+            Choose an estate and a plot size. Send the plan to our team on WhatsApp and we'll confirm the deposit, instalments and your inspection.
           </p>
-          <p className="mt-5 text-[13px] text-white/70">Launch prices from Pace's product papers. Confirmed with you before payment.</p>
+          <p className="mt-5 text-[13px] text-white/70">Prices from Pace's current product papers. Confirmed with you before payment.</p>
         </div>
         <PlanCalculator options={planOptions()} />
       </section>

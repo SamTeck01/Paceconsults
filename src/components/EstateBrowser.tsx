@@ -17,7 +17,9 @@ export default function EstateBrowser({ estates }: { estates: Estate[] }) {
   const [city, setCity] = useState<"All" | City>("All");
   const [budget, setBudget] = useState<Budget>("Any");
   const [lo, hi] = budgets[budget];
-  const list = estates.filter((e) => {
+  // On-sale estates first, sold-out ones after as past projects.
+  const sorted = [...estates].sort((a, b) => Number(a.status === "sold-out") - Number(b.status === "sold-out"));
+  const list = sorted.filter((e) => {
     if (city !== "All" && e.city !== city) return false;
     if (budget === "Any") return true;
     const p = fromPrice(e);

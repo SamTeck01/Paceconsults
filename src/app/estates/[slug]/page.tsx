@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import Hero from "@/components/Hero";
 import PhaseTabs from "@/components/PhaseTabs";
 import PlanCalculator from "@/components/PlanCalculator";
 import { Faq, Label, TextLink } from "@/components/ui";
 import WhatsAppForm from "@/components/WhatsAppForm";
-import { estates, fromPrice, getEstate, naira, planOptions, shortNaira, statusLabel } from "@/data/estates";
+import { estates, fromPrice, getEstate, isOnSale, naira, onSale, planOptions, shortNaira, statusLabel } from "@/data/estates";
 import { site } from "@/data/site";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -29,6 +30,8 @@ export default async function EstatePage({ params }: Params) {
   const options = planOptions([e]);
   const account = e.account ?? site.bank;
   const gallery = e.images.gallery;
+  const selling = isOnSale(e);
+  const alternatives = onSale().filter((x) => x.slug !== e.slug);
 
   return (
     <main className="page">
@@ -39,7 +42,7 @@ export default async function EstatePage({ params }: Params) {
         eyebrow={<span className="chip" data-s={e.status}>{statusLabel[e.status]}</span>}
         title={`${e.name}.`}
         sub={`${e.tagline} ${e.area}.`}
-        cta={{ href: "#inspect", label: "Book an Inspection" }}
+        cta={selling ? { href: "#inspect", label: "Book an Inspection" } : { href: "#now-selling", label: "See What's Selling Now" }}
         coord={`${e.coord} · ${e.city}`}
       />
 
@@ -96,7 +99,7 @@ export default async function EstatePage({ params }: Params) {
         <section className="sec panel grid gap-14 md:grid-cols-[5fr_7fr]" aria-labelledby="plan">
           <div>
             <p className="label !text-white/70">[Plan Your Plot]</p>
-            <h2 id="plan" className="text-[clamp(28px,3vw,36px)] leading-[1.12]">Your deposit and monthly payment at {e.name}.</h2>
+            <h2 id="plan" className="text-[clamp(28px,3vw,36px)] leading-[1.12]">Plan your plot at {e.name}.</h2>
           </div>
           <PlanCalculator options={options} lockEstate />
         </section>
@@ -167,6 +170,7 @@ export default async function EstatePage({ params }: Params) {
         </div>
       </section>
 
+      {selling && (
       <section className="sec grid gap-8 bg-field p-8 md:grid-cols-[5fr_7fr] md:p-12" aria-labelledby="pay">
         <div>
           <Label>Payment Account</Label>
@@ -179,8 +183,9 @@ export default async function EstatePage({ params }: Params) {
           <Fact k="Account name" v={account.name} />
         </div>
       </section>
+      )}
 
-      {e.faq && (
+      {selling && e.faq && (
         <section className="sec" aria-labelledby="faq">
           <div className="grid items-start gap-14 md:grid-cols-[5fr_7fr]">
             <div>
@@ -193,6 +198,7 @@ export default async function EstatePage({ params }: Params) {
         </section>
       )}
 
+      {selling ? (
       <section id="inspect" className="sec panel grid gap-14 md:grid-cols-[5fr_7fr]" aria-labelledby="book">
         <div>
           <p className="label !text-white/70">[Book an Inspection]</p>
@@ -211,6 +217,25 @@ export default async function EstatePage({ params }: Params) {
           ]}
         />
       </section>
+      ) : (
+      <section id="now-selling" className="sec panel grid gap-14 md:grid-cols-[5fr_7fr]" aria-labelledby="sold">
+        <div>
+          <p className="label !text-white/70">[Sold Out]</p>
+          <h2 id="sold" className="text-[clamp(28px,3vw,36px)] leading-[1.12]">{e.name} is fully sold.</h2>
+          <p className="mt-4.5 max-w-[38ch] text-white/80">Thank you to every client who bought early. These estates are selling now.</p>
+        </div>
+        <div className="grid gap-1 md:grid-cols-2">
+          {alternatives.map((x) => (
+            <Link key={x.slug} href={`/estates/${x.slug}`} className="group block bg-white/8 p-6 transition-colors hover:bg-white/14">
+              <span className="chip" data-s={x.status}>{statusLabel[x.status]}</span>
+              <h3 className="mt-4 text-2xl text-white">{x.name}</h3>
+              <p className="mt-1.5 text-sm text-white/75">{x.area}</p>
+              <p className="mt-6 text-white">{fromPrice(x) ? `From ${shortNaira(fromPrice(x)!)}` : "Price on request"} →</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+      )}
     </main>
   );
 }

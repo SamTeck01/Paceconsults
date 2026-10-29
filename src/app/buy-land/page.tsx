@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import { Faq, Label } from "@/components/ui";
-import { estates, naira } from "@/data/estates";
+import { naira, onSale } from "@/data/estates";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ const steps = [
 ];
 
 export default function BuyLandPage() {
-  const rows = estates.flatMap((e) => e.plans.filter((p) => p.price).map((p) => ({ e, p })));
+  const rows = onSale().flatMap((e) => e.plans.filter((p) => p.price).map((p) => ({ e, p })));
   return (
     <main className="page">
       <Hero
