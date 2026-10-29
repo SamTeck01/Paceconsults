@@ -25,6 +25,7 @@ npm run build   # production build
 | Team members | `src/app/about/page.tsx` (`team` list) |
 | Open roles | `src/app/careers/page.tsx` (`roles` list) |
 | Photos | `public/images/` |
+| Estate films (muted hero loop + full film) | `public/media/`, set via `video` in `estates.ts` |
 
 - **Add an estate:** copy an entry in `estates.ts`, give it a new `slug`, and its page appears at `/estates/<slug>`.
 - **Calculator:** any plan with `price`, `deposit` and `months` shows up in "Plan your plot" automatically.
@@ -37,7 +38,7 @@ There is no backend yet. Inspection, quote, Academy and careers forms open Whats
 
 ## Before launch — to confirm with Pace
 
-- High-res drone and site photos. Several land photos are stand-ins (`hero-road`, `land-*`). Team and Academy photos are low-res crops from social media.
+- Orange County Oyo and Epe use the official renders and films (`public/images/oc-*`, `public/media/`). Other land photos are stand-ins (`land-*`), and team and Academy photos are low-res crops from social media.
 - Deposit and instalment terms for Orange County Oyo and Epe (add `deposit` and `months` to show monthly figures in the calculator).
 - Directors' photos and the founding story.
 - The final domain (`site.url` in `src/data/site.ts`).

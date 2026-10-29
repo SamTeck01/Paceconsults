@@ -31,7 +31,7 @@ export default function Motion() {
 
     // Reveal: tag elements below the fold, stagger siblings, release on view.
     const els = Array.from(document.querySelectorAll<HTMLElement>(REVEAL)).filter(
-      (el) => !el.closest(".hero") && el.getBoundingClientRect().top > window.innerHeight * 0.92,
+      (el) => !el.closest(".hero, dialog") && el.getBoundingClientRect().top > window.innerHeight * 0.92,
     );
     els.forEach((el) => {
       const i = el.parentElement ? Array.from(el.parentElement.children).indexOf(el) : 0;
@@ -74,7 +74,7 @@ export default function Motion() {
     nums.forEach((n) => counter.observe(n));
 
     // Parallax on the hero photo + progress bar, one rAF per scroll.
-    const heroImg = document.querySelector<HTMLElement>(".hero-img img");
+    const heroImg = document.querySelector<HTMLElement>(".hero-img video, .hero-img img");
     const bar = document.getElementById("progress");
     let ticking = false;
     const onScroll = () => {

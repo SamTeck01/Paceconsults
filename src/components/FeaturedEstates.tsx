@@ -39,8 +39,14 @@ export default function FeaturedEstates({ estates }: { estates: Estate[] }) {
 export function EstateCard({ estate: e }: { estate: Estate }) {
   const from = fromPrice(e);
   return (
-    <Link href={`/estates/${e.slug}`} className="card">
+    <Link
+      href={`/estates/${e.slug}`}
+      className="card"
+      onMouseEnter={(ev) => ev.currentTarget.querySelector("video")?.play().catch(() => {})}
+      onMouseLeave={(ev) => ev.currentTarget.querySelector("video")?.pause()}
+    >
       <Image src={e.images.hero} alt={`${e.name}, ${e.area}`} fill sizes="(max-width: 820px) 100vw, 33vw" className="object-cover" />
+      {e.video && <video src={e.video.loop} muted loop playsInline preload="none" aria-hidden="true" />}
       <div className="absolute inset-x-[18px] top-4 z-[2]">
         <h3 className="text-2xl text-white">{e.name}</h3>
         <p className="mt-1.5 max-w-[34ch] text-[13px] text-white/90">{e.area}</p>

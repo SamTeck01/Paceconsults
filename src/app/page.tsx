@@ -22,8 +22,9 @@ export default function Home() {
     <main className="page">
       <Hero
         current="/"
-        image="/images/hero-road.jpg"
-        alt="A car driving down a dusty laterite road towards open land at sunset"
+        image="/media/oc-oyo-poster.jpg"
+        video="/media/oc-oyo-loop.mp4"
+        alt="The gate of Orange County Oyo, a Pace estate in Balogun"
         title={site.tagline}
         sub="Surveyed, documented and allocated. Now selling Orange County in Oyo and Epe, Lagos."
         cta={{ href: "/contact", label: "Book an Inspection" }}

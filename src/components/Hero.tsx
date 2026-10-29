@@ -15,13 +15,17 @@ type Props = {
   coord?: string;
   short?: boolean;
   imagePosition?: string;
+  video?: string; // muted background loop, plays over the image
 };
 
-export default function Hero({ current, image, alt, title, sub, cta, eyebrow, coord, short, imagePosition }: Props) {
+export default function Hero({ current, image, alt, title, sub, cta, eyebrow, coord, short, imagePosition, video }: Props) {
   return (
     <section className={`hero ${short ? "short" : ""}`} aria-label={title}>
       <div className="hero-img">
         <Image src={image} alt={alt} fill priority sizes="100vw" className="object-cover" style={{ objectPosition: imagePosition }} />
+        {video && (
+          <video className="absolute inset-0 h-full w-full object-cover" src={video} poster={image} autoPlay muted loop playsInline preload="metadata" aria-hidden="true" />
+        )}
       </div>
       <Link href="/" className="absolute left-0 top-2 z-[2] block max-md:top-1" aria-label="Pace Consults home">
         <Image src="/images/logo.png" alt="Pace Consults" width={654} height={285} priority className="h-[58px] w-auto max-md:h-[46px]" />

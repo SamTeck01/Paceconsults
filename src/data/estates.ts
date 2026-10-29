@@ -47,6 +47,8 @@ export type Estate = {
   facilities?: string[];
   landmarks: Landmark[];
   images: { hero: string; gallery: string[] };
+  // Optional video: a short muted loop for the hero and the full film with sound.
+  video?: { loop: string; film: string; poster: string };
   account?: { bank: string; number: string; name: string };
   externalSite?: string;
   phases?: Phase[];
@@ -181,7 +183,11 @@ export const estates: Estate[] = [
       { name: "Africhatta Film Village", note: "2–3 minutes away." },
       { name: "Danbaba Asphalt Plant", note: "2 minutes away." },
     ],
-    images: { hero: "/images/oc-gate.jpg", gallery: ["/images/oc-road.jpg", "/images/oc-solar.jpg", "/images/oc-gated.jpg"] },
+    images: {
+      hero: "/images/oc-oyo/gate.jpg",
+      gallery: ["/images/oc-oyo/masterplan.jpg", "/images/oc-oyo/blocks.jpg", "/images/oc-oyo/basketball.jpg", "/images/oc-oyo/gym.jpg", "/images/oc-oyo/pitch.jpg", "/images/oc-oyo/gate-wide.jpg", "/images/oc-oyo/aerial.jpg"],
+    },
+    video: { loop: "/media/oc-oyo-loop.mp4", film: "/media/oc-oyo-film.mp4", poster: "/media/oc-oyo-poster.jpg" },
     account: { bank: "Zenith Bank", number: "1311968377", name: "Orange County by Pace" },
     externalSite: "https://www.orangecounty.estate/oyo",
     faq: commonFaq,
@@ -212,7 +218,11 @@ export const estates: Estate[] = [
       { name: "LASUED Michael Otedola", note: "15 minutes" },
       { name: "St. Augustine", note: "20 minutes" },
     ],
-    images: { hero: "/images/oc-road.jpg", gallery: ["/images/oc-gated.jpg", "/images/oc-solar.jpg"] },
+    images: {
+      hero: "/images/oc-epe/gate.jpg",
+      gallery: ["/images/oc-epe/aerial.jpg", "/images/oc-epe/entrance.jpg", "/images/oc-epe/pitch-pool.jpg", "/images/oc-epe/pool.jpg", "/images/oc-epe/gym.jpg", "/images/oc-epe/avenue.jpg", "/images/oc-epe/700sqm.jpg", "/images/oc-epe/commercial.jpg", "/images/oc-epe/gatehouse.jpg"],
+    },
+    video: { loop: "/media/oc-epe-loop.mp4", film: "/media/oc-epe-film.mp4", poster: "/media/oc-epe-poster.jpg" },
     externalSite: "https://www.orangecounty.estate/epe",
     faq: commonFaq,
   },

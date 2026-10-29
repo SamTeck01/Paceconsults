@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Gallery from "@/components/Gallery";
 import Hero from "@/components/Hero";
 import PhaseTabs from "@/components/PhaseTabs";
 import PlanCalculator from "@/components/PlanCalculator";
@@ -38,6 +39,7 @@ export default async function EstatePage({ params }: Params) {
       <Hero
         current="/estates"
         image={e.images.hero}
+        video={e.video?.loop}
         alt={`${e.name}, ${e.area}`}
         eyebrow={<span className="chip" data-s={e.status}>{statusLabel[e.status]}</span>}
         title={`${e.name}.`}
@@ -149,6 +151,32 @@ export default async function EstatePage({ params }: Params) {
                 ))}
             </div>
           </div>
+        </section>
+      )}
+
+      {e.video && (
+        <section className="sec" aria-labelledby="film">
+          <div className="mb-7 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <Label>Film</Label>
+              <h2 id="film" className="h-sec">See {e.name} from the air.</h2>
+            </div>
+            <p className="max-w-[40ch] text-sm text-grey">A walkthrough of the masterplan: gate, roads, blocks and facilities. 3D visualisation.</p>
+          </div>
+          <video className="film" src={e.video.film} poster={e.video.poster} controls playsInline preload="none" />
+        </section>
+      )}
+
+      {e.images.gallery.length > 2 && (
+        <section className="sec" aria-labelledby="gallery">
+          <div className="mb-7 flex justify-between gap-6">
+            <div>
+              <Label>Gallery</Label>
+              <h2 id="gallery" className="h-sec">Inside the estate.</h2>
+            </div>
+            <span className="label self-end">{e.images.gallery.length} renders</span>
+          </div>
+          <Gallery images={e.images.gallery} name={e.name} />
         </section>
       )}
 
