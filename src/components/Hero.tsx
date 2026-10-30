@@ -16,13 +16,21 @@ type Props = {
   short?: boolean;
   imagePosition?: string;
   video?: string; // muted background loop, plays over the image
+  flyer?: boolean; // show the image whole (a flyer) over a blurred copy of itself
 };
 
-export default function Hero({ current, image, alt, title, sub, cta, eyebrow, coord, short, imagePosition, video }: Props) {
+export default function Hero({ current, image, alt, title, sub, cta, eyebrow, coord, short, imagePosition, video, flyer }: Props) {
   return (
     <section className={`hero ${short ? "short" : ""}`} aria-label={title}>
       <div className="hero-img">
-        <Image src={image} alt={alt} fill priority sizes="100vw" className="object-cover" style={{ objectPosition: imagePosition }} />
+        {flyer ? (
+          <>
+            <Image src={image} alt="" fill priority sizes="60vw" className="scale-110 object-cover blur-2xl brightness-75" aria-hidden="true" />
+            <Image src={image} alt={alt} fill priority sizes="(max-width: 820px) 100vw, 60vw" className="object-contain object-left-top pb-[48%] pl-4 pr-[42%] pt-20 md:object-right md:px-0 md:py-20 md:pr-[8%]" />
+          </>
+        ) : (
+          <Image src={image} alt={alt} fill priority sizes="100vw" className="object-cover" style={{ objectPosition: imagePosition }} />
+        )}
         {video && (
           <video className="absolute inset-0 h-full w-full object-cover" src={video} poster={image} autoPlay muted loop playsInline preload="metadata" aria-hidden="true" />
         )}

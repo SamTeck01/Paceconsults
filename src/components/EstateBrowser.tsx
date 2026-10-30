@@ -50,7 +50,8 @@ export default function EstateBrowser({ estates }: { estates: Estate[] }) {
             return (
               <Link key={e.slug} href={`/estates/${e.slug}`} className="group flex flex-col">
                 <div className="relative h-[300px] overflow-hidden md:h-[420px]">
-                  <Image src={e.images.hero} alt={`${e.name}, ${e.area}`} fill sizes="(max-width: 820px) 100vw, 33vw" className="object-cover transition-transform duration-900 ease-[var(--ease-out-strong)] group-hover:scale-[1.04]" />
+                  {e.images.heroIsFlyer && <Image src={e.images.hero} alt="" fill sizes="33vw" className="scale-110 object-cover blur-xl brightness-90" aria-hidden="true" />}
+                  <Image src={e.images.hero} alt={`${e.name}, ${e.area}`} fill sizes="(max-width: 820px) 100vw, 33vw" className={`transition-transform duration-900 ease-[var(--ease-out-strong)] group-hover:scale-[1.04] ${e.images.heroIsFlyer ? "object-contain p-4" : "object-cover"}`} />
                   <span className="chip absolute left-3.5 top-3.5" data-s={e.status}>{statusLabel[e.status]}</span>
                 </div>
                 <div className="grid grid-cols-[1fr_auto] gap-3 pr-3.5 pt-4">

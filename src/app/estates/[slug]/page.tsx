@@ -37,6 +37,7 @@ export default async function EstatePage({ params }: Params) {
       <Hero
         current="/estates"
         image={e.images.hero}
+        flyer={e.images.heroIsFlyer}
         video={e.video?.loop}
         alt={`${e.name}, ${e.area}`}
         eyebrow={<span className="chip" data-s={e.status}>{statusLabel[e.status]}</span>}
