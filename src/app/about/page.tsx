@@ -10,7 +10,13 @@ export const metadata: Metadata = {
 };
 
 // Add photos to /public/images and set `photo` when available.
-const team: { name: string; role: string; photo?: string }[] = [
+// Staff headshots. Add each person's name and role as Pace confirms them;
+// names show on hover once filled in.
+const people: { photo: string; name?: string; role?: string }[] = Array.from({ length: 14 }, (_, i) => ({
+  photo: `/images/people/p${String(i + 1).padStart(2, "0")}.jpg`,
+}));
+
+const team: { name: string; role: string }[] = [
   { name: "Saka Yusuff Olanrewaju", role: "Director" },
   { name: "Kayode Zainab Ayoola", role: "Director" },
   { name: "Otunba Adeyemo Taiwo", role: "Chief Administrative Officer · Senior Partner" },
@@ -29,9 +35,9 @@ export default function AboutPage() {
       <Hero
         short
         current="/about"
-        image="/images/team-gate.jpg"
-        alt="The Pace team outside the office"
-        imagePosition="center 35%"
+        image="/images/team.jpg"
+        alt="The Pace Consults team in the office, in white shirts and orange ties"
+        imagePosition="center 30%"
         title="We are Pace. We set the pace."
         sub={`A surveying and real-estate firm from Oyo town, registered with CAC as ${site.rc}.`}
       />
@@ -40,7 +46,7 @@ export default function AboutPage() {
         <Label id="story">Our Story</Label>
         <p className="tone">
           Pace Associate &amp; Integrated Consults began with surveying,{" "}
-          <span>because every honest land deal starts with knowing exactly where the land is. From that base we grew into estates — Primo, Ìdèra, Velora, Orange County, Ilé Ìrè — consultancy, construction and an academy, all from our building beside Alapo Bridge.</span>
+          <span>because every honest land deal starts with knowing exactly where the land is. From that base we grew into estates — Primo, Ìdèra, Velora, Orange County, Ilé Ìrè — consultancy, construction and an academy, all from our building beside Alapo Bridge. Our motto: setting the pace towards a greater future, and unlocking value.</span>
         </p>
         <div className="mt-18 h-px bg-rule" />
       </section>
@@ -59,17 +65,32 @@ export default function AboutPage() {
       </section>
 
       <section className="sec" aria-labelledby="team">
-        <Label>Leadership &amp; Team</Label>
-        <h2 id="team" className="h-sec mb-9">The people behind every plot.</h2>
-        <div className="grid grid-cols-2 gap-x-1 gap-y-10 md:grid-cols-4">
-          {team.map((p) => (
-            <div key={p.name}>
-              <div className="relative flex h-[220px] items-end bg-field p-3.5 text-xs text-grey md:h-[380px]">
-                {p.photo ? <Image src={p.photo} alt={p.name} fill sizes="(max-width: 820px) 50vw, 25vw" className="object-cover" /> : <span>Photo coming soon</span>}
-              </div>
-              <h3 className="mt-3.5 text-xl text-ink">{p.name}</h3>
-              <p className="mt-1 text-sm text-grey">{p.role}</p>
-            </div>
+        <div className="grid items-start gap-14 md:grid-cols-[5fr_7fr]">
+          <div>
+            <Label>Leadership</Label>
+            <h2 id="team" className="h-sec max-w-[16ch]">The people behind every plot.</h2>
+          </div>
+          <ul>
+            {team.map((p, i) => (
+              <li key={p.name} className="row" data-on={i === 0}>
+                <span>{String(i + 1).padStart(2, "0")}</span>
+                <span>{p.name} <span className="text-grey">· {p.role}</span></span>
+                <span />
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-20 grid grid-cols-2 gap-1 sm:grid-cols-4 md:grid-cols-7">
+          {people.map((p, i) => (
+            <figure key={p.photo} className="group relative aspect-[4/5] overflow-hidden bg-field">
+              <Image src={p.photo} alt={p.name ? `${p.name}, ${p.role}` : `Pace Consults team member ${i + 1}`} fill sizes="(max-width: 820px) 50vw, 14vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
+              {p.name && (
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
+                  {p.name}<br /><span className="text-white/75">{p.role}</span>
+                </figcaption>
+              )}
+            </figure>
           ))}
         </div>
       </section>
@@ -88,10 +109,10 @@ export default function AboutPage() {
           </div>
           <Collage
             images={[
-              { src: "/images/academy-speaker.jpg", alt: "Inside the Pace office, logo on the wall" },
-              { src: "/images/team-gate.jpg", alt: "Team outside the office" },
-              { src: "/images/academy-folder.jpg", alt: "Pace Academy folder" },
-              { src: "/images/academy-group.jpg", alt: "A gathering in the office" },
+              { src: "/images/office-2.jpg", alt: "Inside the Pace office" },
+              { src: "/images/team-gate.jpg", alt: "The team outside the Pace office sign" },
+              { src: "/images/office-3.jpg", alt: "Staff at work in the office" },
+              { src: "/images/plan-review.jpg", alt: "Reviewing a site plan with clients" },
             ]}
           />
         </div>

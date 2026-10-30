@@ -25,8 +25,8 @@ export default function CareersPage() {
       <Hero
         short
         current="/about"
-        image="/images/academy-group.jpg"
-        alt="Pace team and Academy members together in the office"
+        image="/images/team.jpg"
+        alt="The Pace Consults team in the office"
         imagePosition="center 30%"
         title="Work at Pace, Oyo town."
         sub="Join a young team that surveys, sells and builds — and has fun doing it."
@@ -59,10 +59,10 @@ export default function CareersPage() {
           </div>
           <Collage
             images={[
-              { src: "/images/academy-speaker.jpg", alt: "Team member presenting" },
-              { src: "/images/team-gate.jpg", alt: "The team outside the office" },
-              { src: "/images/academy-host.jpg", alt: "Facilitator at an Academy session" },
-              { src: "/images/academy-cert.jpg", alt: "A certificate holder smiling" },
+              { src: "/images/culture-jump.jpg", alt: "Pace staff jumping for joy on Jersey Day" },
+              { src: "/images/team.jpg", alt: "The Pace team in the office" },
+              { src: "/images/csw-group.jpg", alt: "The team in traditional dress for Customer Service Week" },
+              { src: "/images/culture-team.jpg", alt: "Colleagues on estate land on Jersey Day" },
             ]}
           />
         </div>

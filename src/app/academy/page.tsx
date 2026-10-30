@@ -19,13 +19,13 @@ const modules = [
 ];
 
 const wall = [
-  { src: "/images/academy-host.jpg", alt: "A facilitator leading a session", cls: "col-span-2 row-span-2" },
-  { src: "/images/academy-speaker.jpg", alt: "A participant speaking to the class", cls: "" },
-  { src: "/images/academy-board.jpg", alt: "A student writing on the whiteboard", cls: "" },
-  { src: "/images/academy-cert.jpg", alt: "A graduate holding her certificate", cls: "" },
-  { src: "/images/academy-folder.jpg", alt: "A Pace Real Estate Academy folder", cls: "" },
-  { src: "/images/academy-group.jpg", alt: "An Academy cohort", cls: "col-span-2" },
-  { src: "/images/academy-cohort.jpg", alt: "Graduates with certificates", cls: "col-span-2" },
+  { src: "/images/academy/class-wide.jpg", alt: "A full Academy class in session", cls: "col-span-2 row-span-2" },
+  { src: "/images/academy/facilitator.jpg", alt: "A facilitator teaching at the flipchart", cls: "" },
+  { src: "/images/academy/student.jpg", alt: "A participant speaking to the class", cls: "" },
+  { src: "/images/academy/certificate.jpg", alt: "A graduate receiving her certificate", cls: "" },
+  { src: "/images/academy/folder.jpg", alt: "A Pace Real Estate Academy folder", cls: "" },
+  { src: "/images/academy/class.jpg", alt: "Participants in an Academy session", cls: "col-span-2" },
+  { src: "/images/academy/cohort-out.jpg", alt: "An Academy cohort outside the Pace office", cls: "col-span-2" },
 ];
 
 export default function AcademyPage() {
@@ -34,9 +34,9 @@ export default function AcademyPage() {
       <Hero
         short
         current="/academy"
-        image="/images/academy-cohort.jpg"
-        alt="Academy graduates holding their certificates in the Pace office"
-        imagePosition="center 30%"
+        image="/images/academy/hero.jpg"
+        alt="An Academy cohort celebrating with their certificates"
+        imagePosition="center 35%"
         title="Pace Real Estate Academy."
         sub="A capacity-building programme for the next generation of realtors in Oyo State."
         cta={{ href: "#join", label: "Join the Next Cohort" }}

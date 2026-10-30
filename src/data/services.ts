@@ -45,7 +45,7 @@ export const services: Service[] = [
     short: "Brokerage, land banking and retainer advice.",
     intro:
       "Your brokerage and surveying firm in Oyo State. We help you buy right, land-bank for the future and sell with clean paperwork.",
-    image: "/images/team-gate.jpg",
+    image: "/images/plan-review.jpg",
     offers: [
       { name: "Brokerage & listings", body: "Buy or sell land and homes, with documents checked by surveyors." },
       { name: "Land banking", body: "Where to buy early in Oyo, Ibadan and Lagos — and when." },
@@ -59,7 +59,7 @@ export const services: Service[] = [
     short: "From the first block to handover, on land we've surveyed.",
     intro:
       "Environmental development experts. We build homes that last on land we have already surveyed, and supervise every stage to handover.",
-    image: "/images/velora-house.jpg",
+    image: "/images/site-supervision.jpg",
     offers: [
       { name: "Residential construction", body: "Bungalows and duplexes, built to your plan." },
       { name: "Smart-home fittings", body: "Modern fittings for security and comfort. Ask us for the current scope." },

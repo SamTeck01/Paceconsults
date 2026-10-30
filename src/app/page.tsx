@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import FeaturedEstates from "@/components/FeaturedEstates";
 import Hero from "@/components/Hero";
@@ -22,9 +23,8 @@ export default function Home() {
     <main className="page">
       <Hero
         current="/"
-        image="/media/oc-oyo-poster.jpg"
-        video="/media/oc-oyo-loop.mp4"
-        alt="The gate of Orange County Oyo, a Pace estate in Balogun"
+        image="/images/hero-land.jpg"
+        alt="The Pace team out on open land in Oyo, with boundary poles marking the plots"
         title={site.tagline}
         sub="Surveyed, documented and allocated. Now selling Orange County in Oyo and Epe, Lagos."
         cta={{ href: "/contact", label: "Book an Inspection" }}
@@ -54,6 +54,12 @@ export default function Home() {
       <section className="sec" aria-labelledby="featured">
         <Label>Now Selling</Label>
         <FeaturedEstates estates={estates} />
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-rule pt-6">
+          <p className="text-sm text-grey">
+            Plus {soldOut} sold-out estates: {estates.filter((e) => !isOnSale(e)).map((e) => e.name).join(", ")}.
+          </p>
+          <Link href="/estates" className="btn ghost">View all estates</Link>
+        </div>
       </section>
 
       <section className="sec" aria-labelledby="numbers">
@@ -86,8 +92,8 @@ export default function Home() {
             images={[
               { src: "/images/velora-aerial.jpg", alt: "Surveyed plots beside a neighbourhood in Oyo" },
               { src: "/images/team-gate.jpg", alt: "The Pace team in hi-vis vests outside the office" },
-              { src: "/images/academy-speaker.jpg", alt: "A session in the Pace office" },
-              { src: "/images/velora-house.jpg", alt: "A home design for Velora by Pace" },
+              { src: "/images/plan-review.jpg", alt: "The Pace team reviewing a site plan" },
+              { src: "/images/site-supervision.jpg", alt: "Pace engineers supervising a building site" },
             ]}
           />
         </div>
@@ -125,6 +131,23 @@ export default function Home() {
             <OyoMap />
             <figcaption className="mt-2 text-xs text-grey">Schematic, not to scale. Exact coordinates come with every survey plan.</figcaption>
           </figure>
+        </div>
+      </section>
+
+      <section className="sec" aria-labelledby="people">
+        <div className="grid items-end gap-14 md:grid-cols-[5fr_7fr]">
+          <div>
+            <Label>Our People</Label>
+            <h2 id="people" className="h-big max-w-[14ch]">The team that walks the land with you.</h2>
+            <p className="mt-6 max-w-[44ch]">
+              Surveyors, engineers, consultants and realtors, based in Oyo town. The same faces meet you at inspection, at allocation and on site.
+            </p>
+            <TextLink href="/about" className="mt-7">Meet the team</TextLink>
+          </div>
+          <div className="grid grid-cols-[1fr_1.4fr] gap-1">
+            <div className="relative h-[300px] md:h-[460px]"><Image src="/images/team.jpg" alt="The Pace Consults team in white shirts and orange ties" fill sizes="(max-width: 820px) 40vw, 25vw" className="object-cover" /></div>
+            <div className="relative h-[300px] md:h-[460px]"><Image src="/images/culture-team.jpg" alt="Pace staff on Jersey Day, out on estate land" fill sizes="(max-width: 820px) 60vw, 35vw" className="object-cover" /></div>
+          </div>
         </div>
       </section>
 
