@@ -14,19 +14,20 @@ export const metadata: Metadata = {
 // confirms them; names show on hover.
 type Person = { photo: string; name?: string; role?: string };
 const leaders: Person[] = [
-  { photo: "/images/people/d01.jpg", role: "Senior Partner · CTO" },
-  { photo: "/images/people/d02.jpg", role: "COO" },
-  { photo: "/images/people/d03.jpg", role: "HOP" },
-  { photo: "/images/people/d04.jpg", role: "CAO" },
+  { photo: "/images/people/d01.jpg", name: "Saka Olanrewaju", role: "Chief Technical Officer · Senior Partner" },
+  { photo: "/images/people/d02.jpg", name: "Kayode Zainab", role: "Chief Operating Officer · Senior Partner" },
+  { photo: "/images/people/d03.jpg", name: "Abdulfatah Salaudeen", role: "HOP" },
+  { photo: "/images/people/d04.jpg", name: "Adeyemo Taiwo", role: "Chief Administrative Officer · Senior Partner" },
 ];
 const people: Person[] = Array.from({ length: 13 }, (_, i) => ({
   photo: `/images/people/s${String(i + 1).padStart(2, "0")}.jpg`,
 }));
 
 const team: { name: string; role: string }[] = [
-  { name: "Saka Yusuff Olanrewaju", role: "Director" },
-  { name: "Kayode Zainab Ayoola", role: "Director" },
-  { name: "Otunba Adeyemo Taiwo", role: "Chief Administrative Officer · Senior Partner" },
+  { name: "Saka Olanrewaju", role: "Chief Technical Officer · Senior Partner" },
+  { name: "Kayode Zainab", role: "Chief Operating Officer · Senior Partner" },
+  { name: "Adeyemo Taiwo", role: "Chief Administrative Officer · Senior Partner" },
+  { name: "Abdulfatah Salaudeen", role: "HOP" },
   { name: "Mariam Otubu", role: "Public Relations" },
 ];
 
