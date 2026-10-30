@@ -3,9 +3,8 @@ import Link from "next/link";
 import FeaturedEstates from "@/components/FeaturedEstates";
 import Hero from "@/components/Hero";
 import { ArrowUpRight } from "@/components/icons";
-import PlanCalculator from "@/components/PlanCalculator";
 import { Collage, Label, Rows, TextLink } from "@/components/ui";
-import { estates, fromPrice, isOnSale, onSale, planOptions, shortNaira } from "@/data/estates";
+import { estates, fromPrice, isOnSale, onSale, shortNaira } from "@/data/estates";
 import { services } from "@/data/services";
 import { site, telHref } from "@/data/site";
 
@@ -14,8 +13,8 @@ const soldOut = estates.filter((e) => !isOnSale(e)).length;
 
 const pillars = [
   { href: "/services/land-surveying", title: "Surveyed before it's sold", body: "Our own surveyors map every plot. You get a survey plan in your name." },
-  { href: "/buy-land", title: "Documents at allocation", body: "Pay your deposit and receive your receipt and allocation letter." },
-  { href: "#plan", title: `Plots from ${shortNaira(cheapest)}`, body: "300, 450 and 600 sqm at Orange County, with flexible payment." },
+  { href: "/buy-land", title: "Documents at allocation", body: "Pay into Pace's company account and receive your receipt and allocation letter." },
+  { href: "/estates", title: `Plots from ${shortNaira(cheapest)}`, body: "300, 450 and 600 sqm at Orange County Oyo, plus commercial plots." },
 ];
 
 export default function Home() {
@@ -99,17 +98,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="plan" className="sec panel grid gap-14 md:grid-cols-[5fr_7fr]" aria-labelledby="plan-h">
-        <div>
-          <p className="label !text-white/70">[Plan Your Plot]</p>
-          <h2 id="plan-h" className="text-[clamp(28px,3vw,36px)] leading-[1.12]">Plan your plot before you visit.</h2>
-          <p className="mt-4.5 max-w-[40ch] text-white/80">
-            Choose an estate and a plot size. Send the plan to our team on WhatsApp and we'll confirm the deposit, instalments and your inspection.
-          </p>
-          <p className="mt-5 text-[13px] text-white/70">Prices from Pace's current product papers. Confirmed with you before payment.</p>
-        </div>
-        <PlanCalculator options={planOptions()} />
-      </section>
 
       <section className="sec" aria-labelledby="why-oyo">
         <Label>Why Oyo</Label>

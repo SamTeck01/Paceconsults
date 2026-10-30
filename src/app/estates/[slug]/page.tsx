@@ -5,10 +5,9 @@ import { notFound } from "next/navigation";
 import Gallery from "@/components/Gallery";
 import Hero from "@/components/Hero";
 import PhaseTabs from "@/components/PhaseTabs";
-import PlanCalculator from "@/components/PlanCalculator";
 import { Faq, Label, TextLink } from "@/components/ui";
 import WhatsAppForm from "@/components/WhatsAppForm";
-import { estates, fromPrice, getEstate, isOnSale, naira, onSale, planOptions, shortNaira, statusLabel } from "@/data/estates";
+import { estates, fromPrice, getEstate, isOnSale, naira, onSale, shortNaira, statusLabel } from "@/data/estates";
 import { site } from "@/data/site";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -28,7 +27,6 @@ export default async function EstatePage({ params }: Params) {
   if (!e) notFound();
 
   const from = fromPrice(e);
-  const options = planOptions([e]);
   const account = e.account ?? site.bank;
   const gallery = e.images.gallery;
   const selling = isOnSale(e);
@@ -78,34 +76,24 @@ export default async function EstatePage({ params }: Params) {
             <div>
               <table className="table">
                 <thead>
-                  <tr><th scope="col">Size</th><th scope="col">Price</th><th scope="col">Deposit</th><th scope="col">Balance over</th></tr>
+                  <tr><th scope="col">Size</th><th scope="col">Price</th></tr>
                 </thead>
                 <tbody>
                   {e.plans.map((p) => (
                     <tr key={p.size}>
                       <td>{p.size}</td>
                       <td className="big">{p.price ? naira(p.price) : "On request"}</td>
-                      <td>{p.deposit ? naira(p.deposit) : "Ask us"}</td>
-                      <td>{p.months ? `${p.months} months` : "Ask us"}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
               <p className="note">Prices: {e.pricesAsAt}. Confirm current prices with Pace before paying.</p>
+              {e.externalSite && selling && <TextLink href={e.externalSite} className="mt-6">Full details on the {e.name} website</TextLink>}
             </div>
           </div>
         </section>
       )}
 
-      {options.length > 0 && (
-        <section className="sec panel grid gap-14 md:grid-cols-[5fr_7fr]" aria-labelledby="plan">
-          <div>
-            <p className="label !text-white/70">[Plan Your Plot]</p>
-            <h2 id="plan" className="text-[clamp(28px,3vw,36px)] leading-[1.12]">Plan your plot at {e.name}.</h2>
-          </div>
-          <PlanCalculator options={options} lockEstate />
-        </section>
-      )}
 
       {e.features && (
         <section className="sec" aria-labelledby="features">

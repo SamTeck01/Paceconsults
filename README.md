@@ -14,7 +14,7 @@ npm run build   # production build
 
 ## Updating content (no design changes needed)
 
-**Selling vs sold out:** set an estate's `status` to `"sold-out"` and the site moves it to past projects automatically: it leaves the calculator, the inspection forms and the payment tables, and its page points visitors to the estates still on sale. Set it back to `"selling"` to relaunch it.
+**Selling vs sold out:** set an estate's `status` to `"sold-out"` and the site moves it to past projects automatically: it leaves the inspection forms and the payment tables, and its page points visitors to the estates still on sale. Set it back to `"selling"` to relaunch it.
 
 
 | What | File |
@@ -28,7 +28,6 @@ npm run build   # production build
 | Estate films (muted hero loop + full film) | `public/media/`, set via `video` in `estates.ts` |
 
 - **Add an estate:** copy an entry in `estates.ts`, give it a new `slug`, and its page appears at `/estates/<slug>`.
-- **Calculator:** any plan with `price`, `deposit` and `months` shows up in "Plan your plot" automatically.
 - **Prices:** update `pricesAsAt` whenever prices change.
 - **Estate bank account:** an estate with its own `account` (e.g. Orange County) shows that account. Every other estate shows the company account from `site.ts`.
 
@@ -39,7 +38,6 @@ There is no backend yet. Inspection, quote, Academy and careers forms open Whats
 ## Before launch — to confirm with Pace
 
 - Orange County Oyo and Epe use the official renders and films (`public/images/oc-*`, `public/media/`). Other land photos are stand-ins (`land-*`), and team and Academy photos are low-res crops from social media.
-- Deposit and instalment terms for Orange County Oyo and Epe (add `deposit` and `months` to show monthly figures in the calculator).
 - Directors' photos and the founding story.
 - The final domain (`site.url` in `src/data/site.ts`).
 

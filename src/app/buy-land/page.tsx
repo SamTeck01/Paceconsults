@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const steps = [
   { t: "Inspect", b: "Visit the estate with our team, or take a live video inspection on WhatsApp." },
-  { t: "Choose & pay", b: "Pick your size. Pay outright, or a deposit into Pace's company account." },
+  { t: "Choose & pay", b: "Pick your plot size and pay into Pace's company account — never to an individual." },
   { t: "Allocate", b: "Receive your payment receipt and allocation letter, and see your plot's beacons." },
   { t: "Documents", b: "Deed, survey plan and contract of sale in your name, as listed for each estate." },
 ];
@@ -59,24 +59,22 @@ export default function BuyLandPage() {
 
       <section className="sec" aria-labelledby="plans">
         <Label>Payment Plans</Label>
-        <h2 id="plans" className="h-sec mb-7">Prices, deposits and balances by estate.</h2>
+        <h2 id="plans" className="h-sec mb-7">Current prices by estate.</h2>
         <div className="overflow-x-auto">
           <table className="table min-w-[640px]">
-            <thead><tr><th scope="col">Estate</th><th scope="col">Size</th><th scope="col">Price</th><th scope="col">Deposit</th><th scope="col">Balance over</th></tr></thead>
+            <thead><tr><th scope="col">Estate</th><th scope="col">Size</th><th scope="col">Price</th></tr></thead>
             <tbody>
               {rows.map(({ e, p }) => (
                 <tr key={e.slug + p.size}>
                   <td><Link href={`/estates/${e.slug}`} className="underline underline-offset-4">{e.name}</Link></td>
                   <td>{p.size}</td>
                   <td className="big">{naira(p.price!)}</td>
-                  <td>{p.deposit ? naira(p.deposit) : "Ask us"}</td>
-                  <td>{p.months ? `${p.months} months` : "Ask us"}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="note">Confirm current prices before paying. <Link href="/#plan" className="underline">Plan your plot</Link> to see a monthly figure.</p>
+        <p className="note">Confirm current prices before paying.</p>
       </section>
 
       <section className="sec" aria-labelledby="faq">

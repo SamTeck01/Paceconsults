@@ -2,12 +2,10 @@
 // ESTATES — the single place to update estates, prices and status.
 //
 // • Prices are in naira (whole numbers, no commas).
-// • Set `deposit` and `months` on a plan to include it in the
-//   "Plan your plot" calculator. Leave them out if unknown.
 // • Update `pricesAsAt` whenever prices change.
 // • status: "selling" | "few-left" | "pre-launch" | "coming-soon" | "sold-out"
 //   Sold-out estates stay on the site as past projects; they leave the
-//   calculator, inspection forms and payment tables automatically.
+//   inspection forms and payment tables automatically.
 // ─────────────────────────────────────────────────────────────
 
 export type Status = "selling" | "few-left" | "pre-launch" | "coming-soon" | "sold-out";
@@ -337,17 +335,6 @@ export const fromPrice = (e: Estate) => {
   const prices = e.plans.map((p) => p.price).filter((p): p is number => typeof p === "number");
   return prices.length ? Math.min(...prices) : undefined;
 };
-
-export type PlanOption = { estate: string; size: string; price: number; deposit?: number; months?: number };
-
-// Calculator options: every priced plan on an estate that is still on sale.
-// Deposit and months are shown when set; otherwise the team confirms them.
-export const planOptions = (list: Estate[] = estates): PlanOption[] =>
-  list.filter(isOnSale).flatMap((e) =>
-    e.plans
-      .filter((p) => p.price)
-      .map((p) => ({ estate: e.name, size: p.size, price: p.price!, deposit: p.deposit, months: p.months })),
-  );
 
 export const naira = (n: number) => "₦" + Math.round(n).toLocaleString("en-NG");
 

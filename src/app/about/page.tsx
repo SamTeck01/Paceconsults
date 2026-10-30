@@ -26,7 +26,7 @@ const team: { name: string; role: string }[] = [
 const values = [
   { t: "Measure first", b: "No plot is sold until our surveyors have mapped it." },
   { t: "Paper, not promises", b: "Documents in your name, every time." },
-  { t: "Home for all", b: "Entry from a ₦100k deposit, so more families can own land." },
+  { t: "Home for all", b: "Plots priced so more families can own land, not just investors." },
 ];
 
 export default function AboutPage() {
