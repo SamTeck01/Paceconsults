@@ -99,7 +99,7 @@ export const estates: Estate[] = [
       { name: "Primo Phases 1 & 2", note: "Next to Pace's established Primo estates." },
       { name: "New Ogbomoso Expressway", note: "Fast access north and back into Oyo town." },
     ],
-    images: { hero: "/images/velora-house.jpg", gallery: ["/images/velora-aerial.jpg", "/images/velora-house.jpg"] },
+    images: { hero: "/images/flyers/velora.jpg", heroIsFlyer: true, gallery: ["/images/flyers/velora.jpg", "/images/velora-aerial.jpg", "/images/velora-house.jpg"] },
     faq: [
       { q: "What is the title of the property?", a: "Deed of Transfer." },
       { q: "What do I get after my initial deposit?", a: "A payment receipt and your allocation letter." },
@@ -141,7 +141,7 @@ export const estates: Estate[] = [
       { name: "FRSC Office", note: "Licensing and vehicle services close by." },
       { name: "Ladoke Akintola Station, Omi-Adio", note: "Rail links across Oyo State and beyond.", image: "/images/la-station.jpg" },
     ],
-    images: { hero: "/images/ileire-aerial.jpg", gallery: ["/images/ileire-green.jpg", "/images/eleyele.jpg", "/images/ido-market.jpg", "/images/la-station.jpg"] },
+    images: { hero: "/images/flyers/ile-ire.jpg", heroIsFlyer: true, gallery: ["/images/ileire-green.jpg", "/images/eleyele.jpg", "/images/ido-market.jpg", "/images/la-station.jpg"] },
     faq: [
       { q: "What is the title of the property?", a: "Survey plan, with C of O in view." },
       { q: "What do I get after my initial deposit?", a: "Payment receipt, acknowledgement letter and contract of sale of land." },
