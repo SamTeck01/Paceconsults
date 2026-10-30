@@ -16,7 +16,7 @@ type Person = { photo: string; name?: string; role?: string };
 const leaders: Person[] = [
   { photo: "/images/people/d01.jpg", name: "Saka Olanrewaju", role: "Chief Technical Officer · Senior Partner" },
   { photo: "/images/people/d02.jpg", name: "Kayode Zainab", role: "Chief Operating Officer · Senior Partner" },
-  { photo: "/images/people/d03.jpg", name: "Abdulfatah Salaudeen", role: "Head of Projects" },
+  { photo: "/images/people/d03.jpg", name: "Abdulfatah Salaudeen", role: "Head of Projects · Senior Partner" },
   { photo: "/images/people/d04.jpg", name: "Adeyemo Taiwo", role: "Chief Administrative Officer · Senior Partner" },
 ];
 const people: Person[] = Array.from({ length: 13 }, (_, i) => ({
@@ -27,7 +27,7 @@ const team: { name: string; role: string }[] = [
   { name: "Saka Olanrewaju", role: "Chief Technical Officer · Senior Partner" },
   { name: "Kayode Zainab", role: "Chief Operating Officer · Senior Partner" },
   { name: "Adeyemo Taiwo", role: "Chief Administrative Officer · Senior Partner" },
-  { name: "Abdulfatah Salaudeen", role: "Head of Projects" },
+  { name: "Abdulfatah Salaudeen", role: "Head of Projects · Senior Partner" },
   { name: "Mariam Otubu", role: "Public Relations" },
 ];
 
