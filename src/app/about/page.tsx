@@ -19,8 +19,8 @@ const leaders: Person[] = [
   { photo: "/images/people/d03.jpg", name: "Abdulfatah Salaudeen", role: "Head of Projects · Senior Partner" },
   { photo: "/images/people/d04.jpg", name: "Adeyemo Taiwo", role: "Chief Administrative Officer · Senior Partner" },
 ];
-const people: Person[] = Array.from({ length: 13 }, (_, i) => ({
-  photo: `/images/people/s${String(i + 1).padStart(2, "0")}.jpg`,
+const people: Person[] = ["s01", "s03", "s04", "s05", "s06", "s07", "s08", "s09", "s10", "s11", "s12", "s13"].map((id) => ({
+  photo: `/images/people/${id}.jpg`,
 }));
 
 const team: { name: string; role: string }[] = [
