@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter_Tight, Montserrat } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import Footer from "@/components/Footer";
 import Motion from "@/components/Motion";
 import { site } from "@/data/site";
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Motion />
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
