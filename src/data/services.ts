@@ -31,7 +31,7 @@ export const services: Service[] = [
     short: "Estate layouts, plot demarcation and land-use maps.",
     intro:
       "Accurate insight into your property. We produce digital site maps, estate layouts and land-use data that planners, investors and families can read.",
-    image: "/images/academy-board.jpg",
+    image: "/images/academy/flipchart.jpg",
     offers: [
       { name: "Estate layout & plot demarcation", body: "Roads, drainage alignment and numbered plots, planned before sale." },
       { name: "Site analysis", body: "Access, terrain and land use around your site." },

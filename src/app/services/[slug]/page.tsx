@@ -81,7 +81,7 @@ export default async function ServicePage({ params }: Params) {
             ] : [
               { src: "/images/land-soil.jpg", alt: "Cleared land at the edge of a field" },
               { src: "/images/team-gate.jpg", alt: "Pace field team in hi-vis vests" },
-              { src: "/images/academy-board.jpg", alt: "Documentation workshop" },
+              { src: "/images/academy/flipchart.jpg", alt: "Documentation workshop" },
               { src: "/images/velora-aerial.jpg", alt: "Surveyed plots beside a neighbourhood" },
             ]}
           />
