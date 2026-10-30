@@ -92,8 +92,8 @@ export default function Home() {
             images={[
               { src: "/images/velora-aerial.jpg", alt: "Surveyed plots beside a neighbourhood in Oyo" },
               { src: "/images/team-gate.jpg", alt: "The Pace team in hi-vis vests outside the office" },
-              { src: "/images/plan-review.jpg", alt: "The Pace team reviewing a site plan" },
-              { src: "/images/site-supervision.jpg", alt: "Pace engineers supervising a building site" },
+              { src: "/images/office-2.jpg", alt: "Inside the Pace office" },
+              { src: "/images/academy/class-wide.jpg", alt: "A Pace Real Estate Academy class" },
             ]}
           />
         </div>

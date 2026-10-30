@@ -73,7 +73,12 @@ export default async function ServicePage({ params }: Params) {
             </ul>
           </div>
           <Collage
-            images={[
+            images={s.slug === "construction" ? [
+              { src: "/images/site-supervision.jpg", alt: "Pace engineers supervising a build" },
+              { src: "/images/site-walkround.jpg", alt: "Site walk-round with the client" },
+              { src: "/images/plan-review.jpg", alt: "Reviewing the building plan on site" },
+              { src: "/images/team-gate.jpg", alt: "The Pace field team" },
+            ] : [
               { src: "/images/land-soil.jpg", alt: "Cleared land at the edge of a field" },
               { src: "/images/team-gate.jpg", alt: "Pace field team in hi-vis vests" },
               { src: "/images/academy-board.jpg", alt: "Documentation workshop" },

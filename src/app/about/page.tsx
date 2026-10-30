@@ -112,7 +112,7 @@ export default function AboutPage() {
               { src: "/images/office-2.jpg", alt: "Inside the Pace office" },
               { src: "/images/team-gate.jpg", alt: "The team outside the Pace office sign" },
               { src: "/images/office-3.jpg", alt: "Staff at work in the office" },
-              { src: "/images/plan-review.jpg", alt: "Reviewing a site plan with clients" },
+              { src: "/images/office-4.jpg", alt: "The Pace office" },
             ]}
           />
         </div>
