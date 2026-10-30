@@ -14,10 +14,10 @@ export const metadata: Metadata = {
 // confirms them; names show on hover.
 type Person = { photo: string; name?: string; role?: string };
 const leaders: Person[] = [
-  { photo: "/images/people/d01.jpg", name: "Saka Yusuff Olanrewaju", role: "Director" },
-  { photo: "/images/people/d02.jpg", name: "Kayode Zainab Ayoola", role: "Director" },
-  { photo: "/images/people/d03.jpg" },
-  { photo: "/images/people/d04.jpg" },
+  { photo: "/images/people/d01.jpg", role: "Senior Partner · CTO" },
+  { photo: "/images/people/d02.jpg", role: "COO" },
+  { photo: "/images/people/d03.jpg", role: "HOP" },
+  { photo: "/images/people/d04.jpg", role: "CAO" },
 ];
 const people: Person[] = Array.from({ length: 13 }, (_, i) => ({
   photo: `/images/people/s${String(i + 1).padStart(2, "0")}.jpg`,
@@ -91,11 +91,11 @@ export default function AboutPage() {
         <div className="mt-20 grid grid-cols-2 gap-1 md:grid-cols-4">
           {leaders.map((p, i) => (
             <figure key={p.photo} className="group relative aspect-[4/5] overflow-hidden bg-field">
-              <Image src={p.photo} alt={p.name ? `${p.name}, ${p.role}` : `Pace Consults leadership ${i + 1}`} fill sizes="(max-width: 820px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
-              {p.name && (
+              <Image src={p.photo} alt={[p.name, p.role].filter(Boolean).join(", ") || `Pace Consults leadership ${i + 1}`} fill sizes="(max-width: 820px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+              {(p.name || p.role) && (
                 <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-4 pt-12 text-white">
-                  <span className="block text-lg leading-tight">{p.name}</span>
-                  <span className="text-sm text-white/80">{p.role}</span>
+                  {p.name && <span className="block text-lg leading-tight">{p.name}</span>}
+                  <span className={p.name ? "text-sm text-white/80" : "text-lg"}>{p.role}</span>
                 </figcaption>
               )}
             </figure>
