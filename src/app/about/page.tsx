@@ -10,10 +10,17 @@ export const metadata: Metadata = {
 };
 
 // Add photos to /public/images and set `photo` when available.
-// Staff headshots. Add each person's name and role as Pace confirms them;
-// names show on hover once filled in.
-const people: { photo: string; name?: string; role?: string }[] = Array.from({ length: 14 }, (_, i) => ({
-  photo: `/images/people/p${String(i + 1).padStart(2, "0")}.jpg`,
+// Staff headshots. Leaders show first, larger. Add name and role as Pace
+// confirms them; names show on hover.
+type Person = { photo: string; name?: string; role?: string };
+const leaders: Person[] = [
+  { photo: "/images/people/d01.jpg", name: "Saka Yusuff Olanrewaju", role: "Director" },
+  { photo: "/images/people/d02.jpg", name: "Kayode Zainab Ayoola", role: "Director" },
+  { photo: "/images/people/d03.jpg" },
+  { photo: "/images/people/d04.jpg" },
+];
+const people: Person[] = Array.from({ length: 13 }, (_, i) => ({
+  photo: `/images/people/s${String(i + 1).padStart(2, "0")}.jpg`,
 }));
 
 const team: { name: string; role: string }[] = [
@@ -81,7 +88,21 @@ export default function AboutPage() {
           </ul>
         </div>
 
-        <div className="mt-20 grid grid-cols-2 gap-1 sm:grid-cols-4 md:grid-cols-7">
+        <div className="mt-20 grid grid-cols-2 gap-1 md:grid-cols-4">
+          {leaders.map((p, i) => (
+            <figure key={p.photo} className="group relative aspect-[4/5] overflow-hidden bg-field">
+              <Image src={p.photo} alt={p.name ? `${p.name}, ${p.role}` : `Pace Consults leadership ${i + 1}`} fill sizes="(max-width: 820px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+              {p.name && (
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-4 pt-12 text-white">
+                  <span className="block text-lg leading-tight">{p.name}</span>
+                  <span className="text-sm text-white/80">{p.role}</span>
+                </figcaption>
+              )}
+            </figure>
+          ))}
+        </div>
+
+        <div className="mt-1 grid grid-cols-2 gap-1 sm:grid-cols-4 md:grid-cols-7">
           {people.map((p, i) => (
             <figure key={p.photo} className="group relative aspect-[4/5] overflow-hidden bg-field">
               <Image src={p.photo} alt={p.name ? `${p.name}, ${p.role}` : `Pace Consults team member ${i + 1}`} fill sizes="(max-width: 820px) 50vw, 14vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
