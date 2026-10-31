@@ -44,7 +44,7 @@ export type Estate = {
   features?: { name: string; body: string }[];
   facilities?: string[];
   landmarks: Landmark[];
-  images: { hero: string; gallery: string[] };
+  images: { hero: string; gallery: string[]; heroIsFlyer?: boolean }; // flyer covers show whole, never cropped
   // Optional video: a short muted loop for the hero and the full film with sound.
   video?: { loop: string; film: string; poster: string };
   account?: { bank: string; number: string; name: string };
@@ -242,7 +242,7 @@ export const estates: Estate[] = [
     ],
     documents: ["Allocation letter", "Deed of Agreement", "Registered survey plan", "Payment receipt"],
     landmarks: [{ name: "Oyo–Ogbomoso Expressway", note: "3 minutes" }],
-    images: { hero: "/images/estates/idera.jpg", gallery: ["/images/flyers/idera.jpg", "/images/flyers/price-list.jpg", "/images/estates/esolad.jpg"] },
+    images: { hero: "/images/flyers/idera.jpg", heroIsFlyer: true, gallery: ["/images/flyers/idera.jpg", "/images/flyers/price-list.jpg", "/images/estates/idera.jpg"] },
     faq: commonFaq,
   },
   {
@@ -267,7 +267,7 @@ export const estates: Estate[] = [
       { name: "Old Oyo–Ogbomoso road", note: "3 minutes" },
       { name: "Velora by Pace", note: "Next door" },
     ],
-    images: { hero: "/images/estates/primo.jpg", gallery: ["/images/flyers/primo-iii.jpg", "/images/flyers/price-list.jpg", "/images/estates/idera.jpg"] },
+    images: { hero: "/images/flyers/primo-iii.jpg", heroIsFlyer: true, gallery: ["/images/flyers/primo-iii.jpg", "/images/flyers/price-list.jpg", "/images/estates/primo.jpg"] },
     phases: [
       {
         name: "Phase I",
@@ -324,7 +324,7 @@ export const estates: Estate[] = [
       { name: "Oyo–Ogbomoso Expressway", note: "5 minutes" },
       { name: "Primo Estate", note: "Next door" },
     ],
-    images: { hero: "/images/estates/primex.jpg", gallery: ["/images/flyers/primex.jpg"] },
+    images: { hero: "/images/flyers/primex.jpg", heroIsFlyer: true, gallery: ["/images/flyers/primex.jpg", "/images/estates/primex.jpg"] },
     faq: commonFaq,
   },
   {
@@ -341,7 +341,7 @@ export const estates: Estate[] = [
     plans: [{ size: "Plot", price: 4_500_000 }],
     documents: ["Allocation letter", "Deed of Agreement", "Payment receipt"],
     landmarks: [],
-    images: { hero: "/images/estates/esolad.jpg", gallery: ["/images/flyers/price-list.jpg"] },
+    images: { hero: "/images/flyers/price-list.jpg", heroIsFlyer: true, gallery: ["/images/flyers/price-list.jpg", "/images/estates/esolad.jpg"] },
     faq: commonFaq,
   },
 ];
